@@ -1,0 +1,36 @@
+# IYHA custom items (original designs). Give with /iitem give <player> <id> [amount].
+# ability: none | voucher (right-click redeems 'value' dollars) | effect (right-click gives a potion effect)
+# item-model is optional and points at a model in the resource pack, for example iyha:voucher
+items:
+  voucher_1k:
+    material: PAPER
+    name: "<gold><bold>$1,000 Voucher"
+    lore:
+      - "<gray>Right-click to receive <green>$1,000"
+    ability: voucher
+    value: 1000
+  voucher_10k:
+    material: PAPER
+    name: "<gold><bold>$10,000 Voucher"
+    lore:
+      - "<gray>Right-click to receive <green>$10,000"
+    ability: voucher
+    value: 10000
+  swift_apple:
+    material: GOLDEN_APPLE
+    name: "<aqua><bold>Swift Apple"
+    lore:
+      - "<gray>Right-click: Speed II for 2 minutes"
+    ability: effect
+    effect: speed
+    seconds: 120
+    amplifier: 1
+  night_candy:
+    material: SUGAR
+    name: "<light_purple><bold>Night Candy"
+    lore:
+      - "<gray>Right-click: Night vision for 5 minutes"
+    ability: effect
+    effect: night_vision
+    seconds: 300
+    amplifier: 0

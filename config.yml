@@ -1,0 +1,231 @@
+# IYHACore configuration. Every number marked (placeholder) is an IYHA default, not a copy of any other server.
+
+database:
+  # sqlite (default, single file) or mariadb (recommended for production)
+  type: sqlite
+  sqlite-file: iyha.db
+  host: localhost
+  port: 3306
+  name: iyha
+  user: iyha
+  password: change-me
+  pool-size: 6
+
+economy:
+  symbol: "$"
+  starting-balance: 0
+  max-balance: 1000000000000
+  min-pay: 1
+  pay-confirm-threshold: 1000000   # /pay at or above this needs a second confirming command
+  audit-threshold: 100000          # /pay at or above this is written to the audit log
+
+market:
+  max-enchant-level: 10            # items with enchants above this cannot enter any market
+  banned-materials:
+    - BEDROCK
+    - BARRIER
+    - COMMAND_BLOCK
+    - CHAIN_COMMAND_BLOCK
+    - REPEATING_COMMAND_BLOCK
+    - STRUCTURE_BLOCK
+    - STRUCTURE_VOID
+    - JIGSAW
+    - LIGHT
+    - DEBUG_STICK
+    - SPAWNER
+
+sell:
+  multipliers:                     # selling a lot in a category slowly raises your price for it
+    enabled: true
+    items-per-step: 1000
+    bonus-per-step: 0.02
+    max-bonus: 0.5
+
+auction:
+  fee-percent: 5.0                 # (placeholder) taken from the seller on each sale
+  expiry-hours: 48                 # (placeholder)
+  default-cap: 25                  # listings per player; ranks override with iyha.limit.ah-listings.N
+  min-price: 1
+  max-price: 1000000000
+
+orders:
+  default-cap: 10                  # active orders per player; ranks override with iyha.limit.orders.N
+  expiry-hours: 72
+  min-unit-price: 0.01
+  max-unit-price: 1000000
+  max-quantity: 10000
+
+travel:
+  warmup-seconds: 5                # ranks override with iyha.limit.warmup.N (lowest wins)
+  default-homes: 2                 # ranks override with iyha.limit.homes.N (highest wins)
+  tpa-expire-seconds: 60
+  home-denied-worlds: []
+  cooldowns:                       # seconds, ranks override with iyha.limit.cooldown-<kind>.N
+    tpa: 10
+    home: 5
+    warp: 5
+    spawn: 5
+    rtp: 300
+  rtp:
+    worlds:
+      - world
+    min-radius: 500
+    max-radius: 5000
+    attempts: 10
+    denied-biomes:
+      - ocean
+      - deep_ocean
+      - cold_ocean
+      - deep_cold_ocean
+      - lukewarm_ocean
+      - deep_lukewarm_ocean
+      - warm_ocean
+      - frozen_ocean
+      - deep_frozen_ocean
+      - river
+      - frozen_river
+
+combat:
+  tag-seconds: 15                  # (placeholder)
+  logout-action: KILL              # KILL or NONE
+  block-pay: true
+  blocked-commands:
+    - tpa
+    - tpahere
+    - tpaccept
+    - home
+    - homes
+    - spawn
+    - warp
+    - warps
+    - rtp
+    - suicide
+    - sethome
+  pvp-disabled-worlds: []
+  min-bounty: 1000
+  kill-message: "<red><victim> <gray>was slain by <red><killer> <gray>using <white><weapon>"
+  anti-farm:
+    same-victim-cooldown-seconds: 600
+    same-ip-blocked: true
+    min-victim-playtime-minutes: 10
+
+stats:
+  afk-seconds: 300                 # no movement for this long stops playtime counting
+
+spawn:
+  protection:
+    enabled: true
+    radius: 60                     # blocks around /setspawn
+    no-pvp: true
+    no-hunger: true
+
+# world-border:                    # uncomment to set border sizes on startup
+#   world: 10000
+
+# Walk-in portals: stepping into the box runs the command as the player.
+portals: []
+#  - name: rtp-portal
+#    world: world
+#    min: "10,64,10"
+#    max: "12,67,10"
+#    command: rtp
+
+events:
+  auto: []                         # for example: - {type: reward, every-minutes: 120}
+  reward:
+    coins: 5000
+  koth:
+    world: world
+    x: 0
+    y: 80
+    z: 0
+    radius: 6
+    capture-seconds: 60
+    duration-minutes: 15
+    reward-coins: 10000
+  lms:
+    world: world
+    x: 0
+    y: 80
+    z: 0
+    join-seconds: 60
+    min-players: 2
+    reward-coins: 5000
+
+# Rank cards for /ranks. LuckPerms owns the groups: a player is in a rank if they have the permission group.<group>.
+# Limits are permissions on the LuckPerms group: iyha.limit.homes.5, iyha.limit.ah-listings.40, iyha.limit.orders.20,
+# iyha.limit.warmup.3, iyha.limit.cooldown-rtp.120 (see README).
+ranks:
+  - id: owner
+    name: "<red><bold>Owner"
+    prefix: "<red>[Owner]"
+    group: owner
+    icon: NETHER_STAR
+    shown: false
+  - id: admin
+    name: "<red><bold>Admin"
+    prefix: "<red>[Admin]"
+    group: admin
+    icon: DIAMOND_BLOCK
+    shown: false
+  - id: moderator
+    name: "<blue><bold>Moderator"
+    prefix: "<blue>[Mod]"
+    group: moderator
+    icon: IRON_BLOCK
+    shown: false
+  - id: helper
+    name: "<green><bold>Helper"
+    prefix: "<green>[Helper]"
+    group: helper
+    icon: EMERALD_BLOCK
+    shown: false
+  - id: iyha_plus
+    name: "<gold><bold>Iyha+"
+    prefix: "<gold>[Iyha+]"
+    group: iyha_plus
+    icon: GOLDEN_APPLE
+    shown: true
+    perks:
+      - "5 homes"
+      - "40 auction listings"
+      - "20 buy orders"
+      - "Shorter teleport warm-up and RTP cooldown"
+      - "Skip auction confirmation (setting)"
+      - "Prefix and tab badge"
+    obtain: "Get it in our store: /store"
+  - id: member
+    name: "<white><bold>Member"
+    prefix: "<gray>[Member]"
+    group: default
+    icon: PAPER
+    shown: true
+    default: true
+    perks:
+      - "2 homes"
+      - "25 auction listings"
+      - "10 buy orders"
+      - "Full access to shop, sell, auction house, orders and enchanting"
+    obtain: "Everyone starts here."
+
+info:
+  help:
+    - "<gold><bold>IYHA SMP help"
+    - "<gray>/menu <white>- open the main menu"
+    - "<gray>/sell, /shop, /ah, /orders <white>- trade items and money"
+    - "<gray>/sethome, /home, /tpa, /rtp, /spawn <white>- travel"
+    - "<gray>/bal, /pay, /baltop <white>- money"
+    - "<gray>/profile, /stats, /leaderboard <white>- statistics"
+    - "<gray>/rules <white>- server rules"
+  rules:
+    - "<gold><bold>IYHA SMP rules"
+    - "<gray>1. Be respectful. No hate speech or harassment."
+    - "<gray>2. No cheating, hacking or exploiting bugs. Report bugs to staff."
+    - "<gray>3. No duplicating items or money."
+    - "<gray>4. No advertising other servers."
+  discord:
+    - "<gray>Join our Discord: <aqua>(set this in config.yml under info.discord)"
+  store:
+    - "<gray>Store: <aqua>(set this in config.yml under info.store)"
+  media:
+    - "<gray>Media rank info: <aqua>(set this in config.yml under info.media)"

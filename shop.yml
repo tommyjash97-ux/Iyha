@@ -1,0 +1,113 @@
+# Server shop. Prices in dollars. IYHA-original values.
+# Items that can also be sold (see worth.yml) must cost at least 1.5x their sell price (the plugin
+# refuses to load an item that could be bought and sold back for profit).
+# Optional per category: permission: some.node
+categories:
+  blocks:
+    name: "<green>Blocks"
+    icon: GRASS_BLOCK
+    items:
+      cobblestone: 2.0
+      stone: 2.4
+      dirt: 0.4
+      sand: 1.2
+      gravel: 1.2
+      oak_log: 6.0
+      spruce_log: 6.0
+      birch_log: 6.0
+      oak_planks: 1.6
+      glass: 3.2
+      andesite: 1.2
+      diorite: 1.2
+      granite: 1.2
+      deepslate: 2.4
+      obsidian: 60.0
+  farming:
+    name: "<yellow>Farming"
+    icon: WHEAT
+    items:
+      wheat_seeds: 0.8
+      carrot: 6.0
+      potato: 6.0
+      beetroot: 6.0
+      sugar_cane: 4.0
+      pumpkin: 12.0
+      bamboo: 1.2
+      bone_meal: 4.0
+      egg: 2.0
+      melon_seeds: 4.0
+      pumpkin_seeds: 4.0
+      beetroot_seeds: 4.0
+  food:
+    name: "<red>Food"
+    icon: COOKED_BEEF
+    items:
+      bread: 12.0
+      cooked_beef: 20.0
+      cooked_porkchop: 20.0
+      cooked_chicken: 16.0
+      baked_potato: 8.0
+      apple: 8.0
+      golden_carrot: 48.0
+  minerals:
+    name: "<aqua>Minerals"
+    icon: DIAMOND
+    items:
+      coal: 12.0
+      iron_ingot: 60.0
+      copper_ingot: 20.0
+      gold_ingot: 120.0
+      diamond: 600.0
+      emerald: 320.0
+      lapis_lazuli: 24.0
+      redstone: 16.0
+      quartz: 20.0
+  tools:
+    name: "<gold>Tools and gear"
+    icon: IRON_PICKAXE
+    items:
+      iron_pickaxe: 120.0
+      iron_axe: 120.0
+      iron_shovel: 70.0
+      iron_sword: 100.0
+      iron_helmet: 150.0
+      iron_chestplate: 240.0
+      iron_leggings: 210.0
+      iron_boots: 120.0
+      bow: 80.0
+      arrow: 3.0
+      shield: 90.0
+      fishing_rod: 40.0
+  redstone:
+    name: "<red>Redstone"
+    icon: REDSTONE
+    items:
+      piston: 80.0
+      sticky_piston: 140.0
+      repeater: 40.0
+      comparator: 90.0
+      observer: 70.0
+      hopper: 120.0
+      dispenser: 60.0
+      dropper: 50.0
+      lever: 10.0
+      redstone_torch: 12.0
+  misc:
+    name: "<light_purple>Miscellaneous"
+    icon: ENDER_PEARL
+    items:
+      ender_pearl: 80.0
+      string: 6.0
+      leather: 8.0
+      slime_ball: 12.0
+      bone: 4.0
+      torch: 2.0
+      bucket: 50.0
+      water_bucket: 55.0
+      crafting_table: 8.0
+      furnace: 10.0
+      chest: 12.0
+      anvil: 200.0
+      enchanting_table: 500.0
+      bookshelf: 60.0
+      experience_bottle: 90.0
